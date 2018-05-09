@@ -1,0 +1,42 @@
+{% extends "base.twig" %}
+
+{% block content %}
+    <div class="content-wrapper">
+        <div class="search-container">
+            <div class="widget widget_search">
+                <form role="search" method="get" class="search-form" onsubmit="return false;">
+                    <label>
+                        <span class="screen-reader-text">Pesquisar por:</span>
+                        <input type="search" id="searchField" class="search-field" placeholder="Digite a cidade..."
+                               value="" name="s" data-swplive="true" data-swpengine="default"
+                               data-swpconfig="default" autocomplete="off">
+                    </label>
+                    <input type="button" id="searchFieldButton" class="search-submit screen-reader-text"
+                           value="Pesquisar">
+                </form>
+            </div>
+        </div>
+        <div id="loading"><img src="{{ site.theme.link }}/assets/images/loading.gif" alt=""></div>
+        <div id="info">
+            <h2 id="cityName"></h2>
+            <p id="temperature"><span></span>&deg;C</p>
+            <table>
+                <tbody>
+                <tr>
+                    <th>Humidade</th>
+                    <td id="humidity"><span></span>%</td>
+                </tr>
+                <tr>
+                    <th>Máxima</th>
+                    <td id="maxTemperature"><span></span>&deg;C</td>
+                </tr>
+                <tr>
+                    <th>Minina</th>
+                    <td id="minTemperature"><span></span>&deg;C</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="notFound">Cidade não encontrada!</div>
+    </div><!-- /content-wrapper -->
+{% endblock %}

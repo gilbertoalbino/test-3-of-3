@@ -1,0 +1,29 @@
+test3_db:
+  image: mariadb
+  container_name: test3_db
+  volumes_from:
+    - "mariadb-data"
+  ports:
+    - "51000:3306"
+  environment:
+    - MYSQL_DATABASE=test3
+    - MYSQL_ROOT_PASSWORD=secret
+
+mariadb-data:
+  image: tianon/true
+  volumes:
+    - ./mysql:/var/lib/mysql
+
+test3_web:
+  image: lramos1994/php-apache-base:latest
+  container_name: test3_web
+  ports:
+    - "8989:80"
+  links:
+    - test3_db
+  volumes:
+    - ./src/:/var/www/html
+  environment:
+    - MYSQL_HOST=test3_web
+    - SITE_ENV=dev_docker
+    - APACHE_DOC_ROOT=/var/www/html
